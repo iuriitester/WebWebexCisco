@@ -1,5 +1,5 @@
 @smoke @add_organization @org-001
-Feature: Add organization
+Feature: List of organization
 
   Scenario: add new organization using api organization
     Given organization is not created
@@ -8,9 +8,5 @@ Feature: Add organization
 
 
 
-  Scenario: delete organization
-    Given The API has this organization
-    When I delete this organization
-    Then The API has not this organization
 
 

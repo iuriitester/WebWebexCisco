@@ -9,17 +9,17 @@ public class OrganizationsRoot extends BaseStepDef {
 
     public static Response get(){
         return given().
-                header("Authorization:", token).
+                header("Authorization", token).
                 when().
-                get();
+                get("/organizations");
 
     }
 
     public static Response get(String orgId){
         return given().
-                header("Authorization:", token).
+                header("Authorization", token).
                 param("orgId", orgId).
                 when().
-                get();
+                get("/organizations");
     }
 }

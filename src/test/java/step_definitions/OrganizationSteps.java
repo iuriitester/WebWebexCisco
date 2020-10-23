@@ -14,7 +14,7 @@ import static org.hamcrest.Matchers.is;
 
 public class OrganizationSteps {
 
-    @Given("organization is not created")
+    /*@Given("organization is not created")
     public void organization_is_not_created(String orgId){
 
         POJOrganization pojOrganization =  OrganizationsRoot.get(orgId).as(POJOrganization.class);
@@ -23,25 +23,26 @@ public class OrganizationSteps {
 
        // assertThat(pojOrganization.getId(), is)
 
+    }*/
+
+
+
+    @Given("organization is not created")
+    public void organization_is_not_created() {
+        //POJOrganization pojOrganization =  OrganizationsRoot.get().as(POJOrganization.class);
+        //System.out.println(pojOrganization.toString());
+     OrganizationsRoot.get().prettyPeek();
     }
 
     @When("I create a new organization")
-    public void iCreateANewOrganizationOrg() {
+    public void i_create_a_new_organization() {
+
     }
 
     @Then("I have new organization")
-    public void iHaveNewOrganizationOrg() {
+    public void i_have_new_organization() {
+
+
     }
 
-    @Given("The API has this organization")
-    public void theAPIHasThisOrganizationOrg() {
-    }
-
-    @When("I delete this organization")
-    public void iDeleteThisOrganizationOrg() {
-    }
-
-    @Then("The API has not this organization")
-    public void theAPIHasNotThisOrganization() {
-    }
 }
