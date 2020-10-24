@@ -16,6 +16,7 @@ import org.openqa.selenium.safari.SafariOptions;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import utilities.dictionary.PropertyFiles;
 import utilities.generalUtilities.Environment;
 
 
@@ -23,7 +24,7 @@ public class Driver {
     private Driver() {
     }
 
-    private static ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
 
 
     public static WebDriver getDriver() {
@@ -34,7 +35,7 @@ public class Driver {
             // mvn test -Dbrowser=remote-chrome
             // mvn test -Dbrowser=remote-firefox
             // mvn test -Dcucumber.filter.tags=@regression -Dbrowser=remote-firefox
-            String browser = System.getProperty("browser") != null ? System.getProperty("browser") : Environment.getProperty("browser");
+            String browser = System.getProperty("browser") != null ? System.getProperty("browser") : Environment.getProperty(PropertyFiles.CONFIGURATION,"browser");
 
             switch (browser) {
                 case "chrome":

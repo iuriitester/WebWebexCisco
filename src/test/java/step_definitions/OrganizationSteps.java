@@ -31,7 +31,7 @@ public class OrganizationSteps {
     public void organization_is_not_created() {
         //POJOrganization pojOrganization =  OrganizationsRoot.get().as(POJOrganization.class);
         //System.out.println(pojOrganization.toString());
-     OrganizationsRoot.get().prettyPeek();
+    // OrganizationsRoot.get().prettyPeek();
     }
 
     @When("I create a new organization")
