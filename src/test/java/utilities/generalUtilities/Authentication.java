@@ -5,30 +5,33 @@ import utilities.dictionary.PropertyFiles;
 
 public class Authentication {
 
-    private String userName;
-    protected String email;
-    protected String pass;
+    private static String userName;
+    private static String email;
+    private static String pass;
 
     public Authentication(String userName) {
-        this.userName = userName;
+        Authentication.userName = userName;
 
-        this.email = Environment.getProperty(PropertyFiles.APP,userName + "." + "Email");
-        this.pass = Encoder.decrypt(Environment.getProperty(PropertyFiles.APP, userName + "." + "Pass"));
+        Authentication.email = Environment.getProperty(PropertyFiles.appconfig,userName + "." + "Email");
+        //Authentication.pass = Encoder.decrypt(Environment.getProperty(PropertyFiles.appconfig, userName + "." + "Pass"));
+        Authentication.pass = Environment.getProperty(PropertyFiles.appconfig, userName + "." + "Pass");
+
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        Authentication.userName = userName;
     }
 
-    public String getUserName() {
+    public static String getUserName() {
         return userName;
     }
 
-    public String getEmail() {
+    public static String getEmail() {
         return email;
     }
 
-    public String getPass() {
+    public static String getPass() {
         return pass;
     }
+
 }

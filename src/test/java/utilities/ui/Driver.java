@@ -35,7 +35,7 @@ public class Driver {
             // mvn test -Dbrowser=remote-chrome
             // mvn test -Dbrowser=remote-firefox
             // mvn test -Dcucumber.filter.tags=@regression -Dbrowser=remote-firefox
-            String browser = System.getProperty("browser") != null ? System.getProperty("browser") : Environment.getProperty(PropertyFiles.CONFIGURATION,"browser");
+            String browser = System.getProperty("browser") != null ? System.getProperty("browser") : Environment.getProperty(PropertyFiles.configuration,"browser");
 
             switch (browser) {
                 case "chrome":
