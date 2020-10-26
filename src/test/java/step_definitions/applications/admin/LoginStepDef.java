@@ -15,7 +15,7 @@ public class LoginStepDef extends BaseStep {
 
     @Given("^I am going to ([^\"]*)$")
     public void i_am_going_to_admin(String app) {
-        System.out.println("Пытаемся запустить приложение " + app);
+        System.out.println("Steps definitions is here!!!");
     }
 
 /*    @When("I am authorizing as {userName} in {app}")

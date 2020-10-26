@@ -1,17 +1,17 @@
 package utilities.dictionary;
 
 public enum Applications {
-    ADMIN,
-    DEVELOP,
-    WEB,
-    PERSONAL;
+    admin,
+    develop,
+    web,
+    person;
 
     public static Applications getApp(String app){
         switch (app){
-          case "ADMIN": return Applications.ADMIN;
-          case "DEVELOP": return Applications.DEVELOP;
-          case "WEB": return Applications.WEB;
-          case "PERSONAL": return Applications.PERSONAL;
+          case "admin": return Applications.admin;
+          case "develop": return Applications.develop;
+          case "web": return Applications.web;
+          case "person": return Applications.person;
       }
       return null;
     }

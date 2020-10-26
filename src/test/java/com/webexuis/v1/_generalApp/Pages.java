@@ -18,10 +18,10 @@ public class Pages {
     public Pages(Applications app) {
         this.app = app;
         switch (app){
-            case ADMIN: this.adminWebexPages = new AdminWebexPages(); break;
-            case WEB: this.webWebexPages = new WebWebexPages(); break;
-            case DEVELOP: this.developWebexPages = new DevelopWebexPages(); break;
-            case PERSONAL: this.personWebexPages = new PersonWebexPages(); break;
+            case admin: this.adminWebexPages = new AdminWebexPages(); break;
+            case web: this.webWebexPages = new WebWebexPages(); break;
+            case develop: this.developWebexPages = new DevelopWebexPages(); break;
+            case person: this.personWebexPages = new PersonWebexPages(); break;
         }
 
     }
