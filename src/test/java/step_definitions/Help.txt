@@ -1,0 +1,27 @@
+the folders architecture
+(all application folders contains steps and initial folders. Step folders can contains topic folders)
+
+Based structure
+* StepDefinitions for web application
+    *application01
+        *Topic01
+            *UserStory01-01
+            *UserStory01-02
+        *Topic02
+            *UserStory02-01
+            *UserStory02-02
+        *InitialSteps
+    *application02
+    *application03
+
+
+* api folder includes all steps for API activities.
+    -GetTokenStaps.class defines steps to get a token
+* application folder includes all applications
+    * admin folder contains step classes and initialization classes of admin application steps
+        * Topic folder
+            - UserStory.classes
+    * develop folder contains step classes and initialization classes of develop application steps
+        * Topic folder
+            - UserStory.classes
+* initialSteps It needed for implementation general initialization processes

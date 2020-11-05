@@ -1,0 +1,34 @@
+Folder Structure
+
+* webexuis.v1 - root folder
+    * _generalApp contains all based classes for webexuis.v1
+        - Pages.class - application pages controller. This class activates the needed pages group for testing
+    * application folder (for example adminWebex, developWebex ...)
+        * pageFrame class which contains general page elements (sideMenu, Header, Footer)
+        _______________________
+        " The following construction was assumed "
+
+        For all web applications
+
+        interface sidemenu;
+        interface header;
+        interface footer;
+
+        for specific application
+
+        implementation class sideMenu
+            sometimes implementation class sideMenu with some @override methods
+        implementation class header
+            sometimes implementation class header with some @override methods
+        implementation class footer
+            sometimes implementation class footer with some @override methods
+
+        class specificPage extands  sideMenu, header, footer
+
+        Unfortunately, multi-inheritance is prohibited because of the diamond issue
+        Interfaces will not be used because any PageModel is required PageFactory.initElements
+        which can not be used in interfaces.
+
+        So PageFreame class contains all elements sideMenu, header, footer
+       ________________________________________
+        - webApplication Pages

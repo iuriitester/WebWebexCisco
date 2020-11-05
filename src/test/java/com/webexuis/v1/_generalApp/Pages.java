@@ -6,6 +6,8 @@ import com.webexuis.v1.webWebex.WebWebexPages;
 import com.webexuis.v1.zpersonalWebex.PersonWebexPages;
 import utilities.dictionary.Applications;
 
+// Based class for all framework pages
+
 public class Pages {
     private Applications app;
     private AdminWebexPages adminWebexPages;

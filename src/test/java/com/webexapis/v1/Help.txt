@@ -1,0 +1,17 @@
+API folder Structure
+
+* webexapis.v1 - based URI for RestAssure
+    * EndPoint
+        * root - folder for all СRUD HTTP-requests
+            Pattern of the name method
+            post(Param param1, ... Param paramN) - if it is CREATE request
+            get(Param param1, ... Param paramN) - if it is READ request
+            put(Param param1, ... Param paramN) - if it is UPDATE request
+            delete(Param param1, ... Param paramN) - if it is DELETE request
+        * subEndPoint - subfolder for EndPoint
+            Pattern of the name method
+            post(Param param1, ... Param paramN) - if it is CREATE request
+            get(Param param1, ... Param paramN) - if it is READ request
+            put(Param param1, ... Param paramN) - if it is UPDATE request
+            delete(Param param1, ... Param paramN) - if it is DELETE request
+        * POJO-classes for a respond of the EndPoint

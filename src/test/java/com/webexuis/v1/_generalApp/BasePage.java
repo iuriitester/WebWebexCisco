@@ -1,4 +1,4 @@
-package com.webexuis.v1.adminWebex;
+package com.webexuis.v1._generalApp;
 
 import org.openqa.selenium.support.PageFactory;
 import utilities.ui.Driver;

@@ -1,0 +1,37 @@
+Chart of feature directory
+
+feature - main folder of features
+    * application folder (include all feature files of the application)
+        * epic application folder (include all feature files of the epic)
+            - user story 01 of the application
+            - user story 02 of the application
+            - user story # of the application
+        * features of regression test
+            - regression feature 01
+            - regression feature 02
+            - regression feature #
+
+Feature: LogIn to Admin Application
+
+# for developers
+# POJO Scenario (POJOScenario.class) will be created automatically if
+# It will be contains the name attributes as string between symbols "*" and "-" also its value between symbols "'"
+
+  Scenario Outline: Scenario attributes *user-'<userName>' *app-'<app>'
+    Given I am going to <app>
+
+    Examples:
+    |app|userName|
+    |admin|irina.kiseleva|
+    |admin|iurii.kiselev |
+
+#    POJOScenario will be created with fields app and user. Parser is called in the BaseSteps.
+#       It need for initializing scenario params
+
+using variables:
+$userName - user name
+$pass - password
+$app - application (there are the application names into dictionary of applications (enum Applications))
+$app variable must match to $app == Applications.$app.name()
+
+

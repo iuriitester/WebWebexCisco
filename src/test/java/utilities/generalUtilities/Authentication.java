@@ -1,37 +1,51 @@
 package utilities.generalUtilities;
 
 
-import utilities.dictionary.PropertyFiles;
+import step_definitions.initalStep.ParamControl;
+import utilities.api.APIAuthorization;
+import utilities.dictionary.Roles;
+import utilities.exeptions.NullAppException;
+import utilities.exeptions.NullParamException;
 
-public class Authentication {
+// Pattern for application authentication classes
 
-    private static String userName;
-    private static String email;
-    private static String pass;
+public abstract class Authentication {
+    protected ParamControl paramControl;
+    protected String token;
+     protected String userName;
+     protected String log;
+     protected String pass;
+     protected Roles role;
 
-    public Authentication(String userName) {
-        Authentication.userName = userName;
+    public abstract void setLog() throws NullAppException, NullParamException;
+    public abstract void setPass() throws NullAppException, NullParamException;
+    public abstract void setRole() throws NullAppException, NullParamException;
 
-        Authentication.email = Environment.getProperty(PropertyFiles.appconfig,userName + "." + "Email");
-        //Authentication.pass = Encoder.decrypt(Environment.getProperty(PropertyFiles.appconfig, userName + "." + "Pass"));
-        Authentication.pass = Environment.getProperty(PropertyFiles.appconfig, userName + "." + "Pass");
+    // authentication base class
+    // this class contains ParamControl object for defining application params
+    // also userName because it is mandatory param for any application
+    // All authentication params which relevant for all application are defined here
 
+    public Authentication(ParamControl paramControl) throws NullAppException, NullParamException {
+
+        this.paramControl = paramControl;
+        this.userName = (String)paramControl.getParam("userName");
     }
 
     public void setUserName(String userName) {
-        Authentication.userName = userName;
+        this.userName = userName;
     }
 
-    public static String getUserName() {
-        return userName;
+    public String getUserName() {
+        return this.userName;
     }
 
-    public static String getEmail() {
-        return email;
+    public String getPass() {
+        return this.pass;
     }
 
-    public static String getPass() {
-        return pass;
+    public String getLog() {
+        return log;
     }
 
 }

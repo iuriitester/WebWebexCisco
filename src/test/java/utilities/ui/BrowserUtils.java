@@ -10,6 +10,12 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
 
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +25,10 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// This class contains all methods for working with a browser
+
 public class BrowserUtils {
+
     public static void wait(int secs) {
         try {
             Thread.sleep(1000 * secs);
@@ -250,6 +259,31 @@ public class BrowserUtils {
                 element.click();
             }
         }
+    }
+
+    // copyToBuffer and copyFromBuffer are used for working with buffer of the OS.
+    // It is using during take Token with web page (see GetTokenSteps.class).
+
+    public static void copyToBuffer(String text) {
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        StringSelection stringSelection = new StringSelection(text);
+        clipboard.setContents(stringSelection, null);
+    }
+
+    public static String copyFromBuffer() {
+        //IOException,
+        //NullPointerException,IllegalStateException, UnsupportedFlavorException
+        String s = "";
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        DataFlavor flavor = DataFlavor.stringFlavor;
+        clipboard.isDataFlavorAvailable(flavor);
+        try {
+            s = "" + clipboard.getData(flavor);
+        } catch (NullPointerException | IllegalStateException | UnsupportedFlavorException | IOException e) {
+            e.getStackTrace();
+        }
+
+        return s;
     }
 
 }
