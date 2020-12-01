@@ -5,8 +5,6 @@ Feature: logIn in Develop Application
       When I LogIn as <userName>
       Then I get Welcome Page
 
-
-
     Examples:
       |app  |userName|
       |develop|irina.kiseleva|
