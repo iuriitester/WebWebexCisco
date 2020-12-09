@@ -1,3 +1,4 @@
+@test
 Feature: Get API Token
 
   Scenario Outline: I take Token for it I need *app'<app>' and *userName'<userName>'

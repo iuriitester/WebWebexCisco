@@ -21,7 +21,7 @@ public class GetTokenSteps extends DevelopBaseSteps {
     }
 
     @Given("I am checking Token to take Token")
-    public void i_am_checking_Token_to_take_Token() {
+    public void i_am_checking_token_to_take_token() {
 
         if(APIAuthorization.getToken() != null)
             // checking current Token. Token has 12 hours life, therefore it may be overdue
