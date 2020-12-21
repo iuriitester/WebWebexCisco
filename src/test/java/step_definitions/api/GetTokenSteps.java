@@ -20,7 +20,6 @@ public class GetTokenSteps extends DevelopBaseSteps {
 
     public GetTokenSteps() throws NullAppException, NullUserNameException, NullParamException {
     }
-    @Test
     @Given("I am checking Token to take Token")
     public void i_am_checking_token_to_take_token() {
         System.out.println("Just simple test!!!");
@@ -35,7 +34,6 @@ public class GetTokenSteps extends DevelopBaseSteps {
         else Assertions.assertTrue(APIAuthorization.getToken() == null);
 
     }
-    @Test
     @When("I go to TokenPage")
     public void i_go_to_TokenPage() {
         try {
@@ -45,7 +43,6 @@ public class GetTokenSteps extends DevelopBaseSteps {
         }
         Assertions.assertTrue(developWebexPages.gettingStartedPage.bodyTokenButton.isDisplayed());
     }
-    @Test
     @And("I take Token")
     public void itakeToken() {
 

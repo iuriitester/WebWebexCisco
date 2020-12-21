@@ -10,6 +10,8 @@ import utilities.exeptions.NullParamException;
 import utilities.exeptions.NullUserNameException;
 import utilities.ui.Driver;
 
+import java.util.concurrent.TimeUnit;
+
 public class DevelopLoginStepDef extends DevelopBaseSteps {
 
     public DevelopLoginStepDef() throws NullAppException, NullUserNameException, NullParamException {
@@ -23,6 +25,8 @@ public class DevelopLoginStepDef extends DevelopBaseSteps {
         } catch (NullParamException e) {
             e.printStackTrace();
         }
+
+        Driver.getDriver().manage().timeouts().implicitlyWait(300, TimeUnit.MILLISECONDS);
         Assertions.assertTrue(developWebexPages.welcomePage.logIn.isDisplayed());
     }
 

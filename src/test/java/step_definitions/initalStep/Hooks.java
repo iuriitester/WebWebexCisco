@@ -4,11 +4,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 import io.restassured.RestAssured;
-import utilities.api.APIAuthorization;
-import utilities.dictionary.EndPoints;
 import utilities.dictionary.PropertyFiles;
-import utilities.exeptions.NullAppException;
-import utilities.exeptions.NullUserNameException;
 import utilities.generalUtilities.Environment;
 import utilities.ui.Driver;
 
@@ -22,5 +18,11 @@ public class Hooks {
         Driver.getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         Driver.getDriver().manage().window().maximize();
         RestAssured.baseURI = Environment.getProperty(PropertyFiles.admin, "RAbaseURI");
+    }
+    @After
+    public void afterScenario(){
+        Driver.getDriver().quit();
+        Driver.closeDriver();
+
     }
 }
