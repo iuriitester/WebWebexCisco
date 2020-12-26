@@ -3,10 +3,7 @@ import step_definitions.initalStep.ParamControl;
 import utilities.api.APIAuthorization;
 import utilities.exeptions.NullParamException;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,14 +12,19 @@ import java.util.Objects;
 public class Git {
 
 
-    private static Path directory;
+    private static Path directory, repositorypath;
 
     // example of usage
     public static void initAndAddFile(ParamControl paramControl) throws IOException, InterruptedException, NullParamException {
         String test = (String)paramControl.getParam("path");
         directory = Paths.get(test);
+        repositorypath = Paths.get(test + "/.git");
         Files.createDirectories(directory);
-        gitInit(directory);
+        if (!Files.exists(repositorypath))
+            gitInit(directory);
+
+
+
     //    System.out.println("This is token: " + APIAuthorization.getToken());
         Files.write(directory.resolve("token.txt"), APIAuthorization.getToken().getBytes());
 //        gitStage(directory);
