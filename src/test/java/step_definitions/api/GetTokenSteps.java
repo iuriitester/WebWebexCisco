@@ -57,7 +57,7 @@ public class GetTokenSteps extends DevelopBaseSteps {
         //Assertions.assertFalse(APIAuthorization.getToken().isEmpty());
        try{
             Git.initAndAddFile(paramControl);
-            //    Git.gitPush(Git.getDirectory());
+            Git.gitPush(Git.getDirectory());
         }catch(IOException | InterruptedException | NullParamException io){
             System.out.println("IOException is here");
         }

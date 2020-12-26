@@ -27,8 +27,8 @@ public class Git {
 
     //    System.out.println("This is token: " + APIAuthorization.getToken());
         Files.write(directory.resolve("token.txt"), APIAuthorization.getToken().getBytes());
-//        gitStage(directory);
-//        gitCommit(directory, "Add token.txt");
+        gitStage(directory);
+        gitCommit(directory, "Add token.txt");
     }
 
     // example of usage
