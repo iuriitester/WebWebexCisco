@@ -36,25 +36,39 @@ public class ParamControl {
 
                 // searching the param in the application configuration properties
                 if(pojoScenario.getObject(paramKey)!=null) return pojoScenario.getObject(paramKey);
-                else
-                    switch (app){
-                        case admin: return Environment.getProperty(PropertyFiles.admin,paramKey);
-                        case develop: return Environment.getProperty(PropertyFiles.develop,paramKey);
-                        case person: return Environment.getProperty(PropertyFiles.person,paramKey);
-                        case web: return Environment.getProperty(PropertyFiles.web,paramKey);
+                else {
+                    String tmpparam = null;
+                    switch (app) {
+                        case admin:
+                            tmpparam = Environment.getProperty(PropertyFiles.admin, paramKey);
+                            break;
+                        case develop:
+                            tmpparam = Environment.getProperty(PropertyFiles.develop, paramKey);
+                            break;
+                        case person:
+                            tmpparam = Environment.getProperty(PropertyFiles.person, paramKey);
+                            break;
+                        case web:
+                            tmpparam = Environment.getProperty(PropertyFiles.web, paramKey);
+                            break;
                     }
-            } catch (NullAppException e) {
-                e.printStackTrace();
+                    if (!tmpparam.isEmpty())
+                    return tmpparam;
+
+                }
+            } catch (NullAppException | NullPointerException e) {
+
+                // searching in other configuration files
+                Object env = Environment.getProperty(PropertyFiles.appconfig, paramKey);
+                if (env!=null) return env;
+                env = Environment.getProperty(PropertyFiles.qa, paramKey);
+                if (env!=null) return env;
+                env = Environment.getProperty(PropertyFiles.configuration, paramKey);
+                if(env!=null) return env;
+                // generate Exception if param is not found
+                throw new NullParamException("The param " + paramKey + " is NOT defined");
             }
-
-       // searching in other configuration files
-       Object env = Environment.getProperty(PropertyFiles.appconfig, paramKey);
-            if (env!=null) return env;
-       env = Environment.getProperty(PropertyFiles.qa, paramKey);
-            if(env!=null) return env;
-
-       // generate Exception if param is not found
-       throw new NullParamException("The param " + paramKey + " is NOT defined");
+        return null;
     }
 }
 

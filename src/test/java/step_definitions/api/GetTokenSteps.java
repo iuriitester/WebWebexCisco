@@ -3,16 +3,20 @@ package step_definitions.api;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.testng.annotations.Test;
 import step_definitions.applications.develop.initialSteps.DevelopBaseSteps;
 import utilities.api.APIAuthorization;
 import utilities.dictionary.EndPoints;
 import utilities.exeptions.NullAppException;
 import utilities.exeptions.NullParamException;
 import utilities.exeptions.NullUserNameException;
+import utilities.generalUtilities.Git;
 import utilities.ui.BrowserUtils;
 import utilities.ui.Driver;
+
+import java.io.IOException;
+import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.given;
 
@@ -20,6 +24,7 @@ public class GetTokenSteps extends DevelopBaseSteps {
 
     public GetTokenSteps() throws NullAppException, NullUserNameException, NullParamException {
     }
+    @Test
     @Given("I am checking Token to take Token")
     public void i_am_checking_token_to_take_token() {
         System.out.println("Just simple test!!!");
@@ -44,13 +49,29 @@ public class GetTokenSteps extends DevelopBaseSteps {
         Assertions.assertTrue(developWebexPages.gettingStartedPage.bodyTokenButton.isDisplayed());
     }
     @And("I take Token")
-    public void itakeToken() {
-
+    public void itakeToken()  {
         developWebexPages.gettingStartedPage.bodyTokenButton.click();
         BrowserUtils.waitForVisibility(developWebexPages.gettingStartedPage.bodyTokenButton,3);
         developWebexPages.gettingStartedPage.okButton.click();
         APIAuthorization.setToken(BrowserUtils.copyFromBuffer());
-
+        //Assertions.assertFalse(APIAuthorization.getToken().isEmpty());
+       try{
+            Git.initAndAddFile(paramControl);
+            //    Git.gitPush(Git.getDirectory());
+        }catch(IOException | InterruptedException | NullParamException io){
+            System.out.println("IOException is here");
+        }
     }
 
+    @And("I save it to the file")
+    public void i_save_it_to_the_file() {
+/*        try{
+            Git.initAndAddFile(paramControl);
+        //    Git.gitPush(Git.getDirectory());
+        }catch(IOException | InterruptedException | NullParamException io){
+            System.out.println("IOException is here");
+        }*/
+
+
+    }
 }

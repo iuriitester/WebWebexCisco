@@ -1,6 +1,7 @@
 package utilities.generalUtilities;
 
 import utilities.dictionary.PropertyFiles;
+import utilities.exeptions.NullParamException;
 
 import java.io.FileInputStream;
 import java.util.HashMap;
@@ -102,8 +103,11 @@ public class Environment {
         return null;
     }
 
-    public static String getProperty(PropertyFiles pfile, String keyName) {
-        return propertyMap.get(pfile.name()).getProperty(keyName);
+    public static String getProperty(PropertyFiles pfile, String keyName) throws NullPointerException {
+
+           // if (propertyMap.containsKey(keyName)) throw new NullParamException("No key");
+            return propertyMap.get(pfile.name()).getProperty(keyName);
+
     }
 
 }

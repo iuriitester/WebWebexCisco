@@ -16,6 +16,7 @@ public abstract class POJOScenarios {
     }
 
     HashMap<String,Object> attributesMap = new HashMap<String,Object>();
+
     public abstract HashMap<String,Object>  getAttributesMap();
     public abstract List<String> keyList();
     public abstract Object getObject(String key);

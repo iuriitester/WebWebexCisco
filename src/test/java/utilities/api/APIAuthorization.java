@@ -5,11 +5,11 @@ package utilities.api;
 
 public class APIAuthorization {
 
-    private static String token = null;
+    private static String token;
 
     public static String getToken() {
 
-        return token;
+        return APIAuthorization.token;
     }
 
     public static void setToken(String token) {
