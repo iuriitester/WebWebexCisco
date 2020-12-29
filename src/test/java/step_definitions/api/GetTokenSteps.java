@@ -7,15 +7,18 @@ import org.junit.jupiter.api.Assertions;
 import org.testng.annotations.Test;
 import step_definitions.applications.develop.initialSteps.DevelopBaseSteps;
 import utilities.api.APIAuthorization;
+import utilities.dictionary.DirectoryType;
 import utilities.dictionary.EndPoints;
 import utilities.exeptions.NullAppException;
 import utilities.exeptions.NullParamException;
 import utilities.exeptions.NullUserNameException;
 import utilities.generalUtilities.Git;
+import utilities.generalUtilities.GitControl;
 import utilities.ui.BrowserUtils;
 import utilities.ui.Driver;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.given;
@@ -30,13 +33,13 @@ public class GetTokenSteps extends DevelopBaseSteps {
         System.out.println("Just simple test!!!");
         if(APIAuthorization.getToken() != null)
             // checking current Token. Token has 12 hours life, therefore it may be overdue
-        Assertions.assertTrue(given().
-                header("Authorization", APIAuthorization.getToken()).
-                log().all().
-                when().
-                get(EndPoints.organizations.getEndpoint()).getStatusCode()==401);
+            Assertions.assertEquals(given().
+                    header("Authorization", APIAuthorization.getToken()).
+                    log().all().
+                    when().
+                    get(EndPoints.organizations.getEndpoint()).getStatusCode(), 401);
         // for reporting. It is always TRUE
-        else Assertions.assertTrue(APIAuthorization.getToken() == null);
+        else Assertions.assertNull(APIAuthorization.getToken());
 
     }
     @When("I go to TokenPage")
@@ -53,25 +56,19 @@ public class GetTokenSteps extends DevelopBaseSteps {
         developWebexPages.gettingStartedPage.bodyTokenButton.click();
         BrowserUtils.waitForVisibility(developWebexPages.gettingStartedPage.bodyTokenButton,3);
         developWebexPages.gettingStartedPage.okButton.click();
-        APIAuthorization.setToken(BrowserUtils.copyFromBuffer());
+     //   APIAuthorization.setToken(BrowserUtils.copyFromBuffer());
         //Assertions.assertFalse(APIAuthorization.getToken().isEmpty());
-       try{
-            Git.initAndAddFile(paramControl);
-            Git.gitPush(Git.getDirectory());
-        }catch(IOException | InterruptedException | NullParamException io){
-            System.out.println("IOException is here");
-        }
+
     }
 
     @And("I save it to the file")
-    public void i_save_it_to_the_file() {
-/*        try{
-            Git.initAndAddFile(paramControl);
-        //    Git.gitPush(Git.getDirectory());
-        }catch(IOException | InterruptedException | NullParamException io){
-            System.out.println("IOException is here");
-        }*/
+    public void i_save_it_to_the_file() throws IOException {
+        Files.createDirectories(GitControl.getDirectory(paramControl, DirectoryType.directory));
+        Files.write(GitControl.getDirectory(paramControl, DirectoryType.directory).resolve("token.txt"), BrowserUtils.copyFromBuffer().getBytes());
+    }
 
-
+    @And("Push to the remote repository")
+    public void push_to_the_remote_repository(){
+  //    GitControl.pushToken(paramControl);
     }
 }

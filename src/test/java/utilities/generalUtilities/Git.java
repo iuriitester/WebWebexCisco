@@ -1,6 +1,7 @@
 package utilities.generalUtilities;
 import step_definitions.initalStep.ParamControl;
 import utilities.api.APIAuthorization;
+import utilities.dictionary.DirectoryType;
 import utilities.exeptions.NullParamException;
 
 import java.io.*;
@@ -10,29 +11,46 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 public class Git {
+    private static String strDirectory;
+    private static Path directory, repositoryPath;
 
+    private static void setDirectory(ParamControl paramControl) {
+        try{
+            strDirectory = (String)paramControl.getParam("path");
+            directory = Paths.get(strDirectory);
+        }catch (NullParamException nprE){
+            System.out.println("setDirectory");
+        }
+        // repositoryPath = Paths.get(test + "/.git");
 
-    private static Path directory, repositorypath;
+    }
 
-    // example of usage
-    public static void initAndAddFile(ParamControl paramControl) throws IOException, InterruptedException, NullParamException {
-        String test = (String)paramControl.getParam("path");
-        directory = Paths.get(test);
-        repositorypath = Paths.get(test + "/.git");
-        Files.createDirectories(directory);
+   protected static Path getDirectories(ParamControl paramControl , DirectoryType directoryType)  {
+        if (directoryType == DirectoryType.directory && directory == null) {
+            setDirectory(paramControl);
+            return directory;
+        } else if (directoryType == DirectoryType.directory) return directory;
+
+        if (directoryType == DirectoryType.repositoryPath && repositoryPath == null && directory != null){
+
+            return repositoryPath = Paths.get(strDirectory + "/.git");
+        } else if (directoryType == DirectoryType.repositoryPath && repositoryPath != null) return repositoryPath;
+        return null;
+    }
+
+/*    protected static void initAndAddFile(ParamControl paramControl) throws IOException, InterruptedException, NullParamException {
+
+        Files.createDirectories(getDirectories(paramControl, "directory"));
         if (!Files.exists(repositorypath))
             gitInit(directory);
 
-
-
-    //    System.out.println("This is token: " + APIAuthorization.getToken());
         Files.write(directory.resolve("token.txt"), APIAuthorization.getToken().getBytes());
         gitStage(directory);
         gitCommit(directory, "Add token.txt");
-    }
+    }*/
 
-    // example of usage
-    private static void cloneAndAddFile() throws IOException, InterruptedException {
+/*    // example of usage
+    protected static void cloneAndAddFile() throws IOException, InterruptedException {
         String originUrl = "https://github.com/Crydust/TokenReplacer.git";
         Path directory = Paths.get("c:/temp/TokenReplacer");
         gitClone(directory, originUrl);
@@ -40,29 +58,50 @@ public class Git {
         gitStage(directory);
         gitCommit(directory, "Add example.txt");
         gitPush(directory);
+    }*/
+
+/*    protected static void gitInit(ParamControl paramControl) throws IOException, InterruptedException, NullParamException {
+        runCommand(getDirectories(paramControl, "directory"), "git", "init");
+    }*/
+/*    protected static void gitRemoteAdd(Path directory) throws IOException, InterruptedException {
+        runCommand(directory, "git", "remote", "add", "Token", "URL");
+    }*/
+
+
+
+
+    protected static void gitPush(ParamControl paramControl) throws IOException, InterruptedException {
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
     }
 
-    public static void gitInit(Path directory) throws IOException, InterruptedException {
-        runCommand(directory, "git", "init");
+    protected static void gitAdd(ParamControl paramControl) throws IOException, InterruptedException {
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "add", "-A");
+    }
+    protected static void gitCommit(ParamControl paramControl, String message) throws IOException, InterruptedException {
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "commit", "-m", message);
+    }
+    protected static void gitPull(ParamControl paramControl) throws IOException, InterruptedException {
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "pull");
     }
 
-    public static void gitStage(Path directory) throws IOException, InterruptedException {
-        runCommand(directory, "git", "add", "-A");
-    }
 
-    public static void gitCommit(Path directory, String message) throws IOException, InterruptedException {
+
+
+
+
+/*    protected static void gitCommit(Path directory, String message) throws IOException, InterruptedException {
         runCommand(directory, "git", "commit", "-m", message);
     }
 
-    public static void gitPush(Path directory) throws IOException, InterruptedException {
+    protected static void gitPush(Path directory) throws IOException, InterruptedException {
         runCommand(directory, "git", "push");
     }
 
-    public static void gitClone(Path directory, String originUrl) throws IOException, InterruptedException {
+    protected static void gitClone(Path directory, String originUrl) throws IOException, InterruptedException {
         runCommand(directory.getParent(), "git", "clone", originUrl, directory.getFileName().toString());
-    }
+    }*/
 
-    public static void runCommand(Path directory, String... command) throws IOException, InterruptedException {
+    protected static void runCommand(Path directory, String... command) throws IOException, InterruptedException {
         Objects.requireNonNull(directory, "directory");
         if (!Files.exists(directory)) {
             throw new RuntimeException("can't run command in non-existing directory '" + directory + "'");
@@ -95,7 +134,7 @@ public class Git {
 
         @Override
         public void run() {
-            try (BufferedReader br = new BufferedReader(new InputStreamReader(is));) {
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
                 String line;
                 while ((line = br.readLine()) != null) {
                     System.out.println(type + "> " + line);
@@ -106,7 +145,4 @@ public class Git {
         }
     }
 
-    public static Path getDirectory() {
-        return directory;
-    }
 }

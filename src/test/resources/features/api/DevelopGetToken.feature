@@ -7,7 +7,8 @@ Feature: Get API Token
     When I LogIn as <userName>
     And I go to TokenPage
     And I take Token
-   # And I save it to the file
+    And I save it to the file
+    And Push to the remote repository
     Examples:
       | app | userName |
       |develop|irina.kiseleva|

@@ -18,7 +18,7 @@ public class Environment {
 
     static {
         try {
-            String key = "";
+            String key;
             // LOAD GENERAL PROPERTIES
             // reading the major configuration class of the configuration property
             // This file contains configurations for all test applications
@@ -103,10 +103,15 @@ public class Environment {
         return null;
     }
 
-    public static String getProperty(PropertyFiles pfile, String keyName) throws NullPointerException {
+    public static String getProperty(PropertyFiles pfile, String keyName) {
 
            // if (propertyMap.containsKey(keyName)) throw new NullParamException("No key");
+        try{
             return propertyMap.get(pfile.name()).getProperty(keyName);
+        }catch(NullPointerException npe){
+            npe.getMessage();
+        }
+            return null;
 
     }
 
