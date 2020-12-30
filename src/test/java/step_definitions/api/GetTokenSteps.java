@@ -58,17 +58,22 @@ public class GetTokenSteps extends DevelopBaseSteps {
         developWebexPages.gettingStartedPage.okButton.click();
      //   APIAuthorization.setToken(BrowserUtils.copyFromBuffer());
         //Assertions.assertFalse(APIAuthorization.getToken().isEmpty());
-
+        System.out.println("I take Token finish");
     }
 
     @And("I save it to the file")
     public void i_save_it_to_the_file() throws IOException {
+        if (Files.deleteIfExists(GitControl.getDirectory(paramControl, DirectoryType.directory))) System.out.println("Deleting is true");
+        else System.out.println("Deleting is false");
         Files.createDirectories(GitControl.getDirectory(paramControl, DirectoryType.directory));
         Files.write(GitControl.getDirectory(paramControl, DirectoryType.directory).resolve("token.txt"), BrowserUtils.copyFromBuffer().getBytes());
     }
 
     @And("Push to the remote repository")
     public void push_to_the_remote_repository(){
+        GitControl.getInitToken(paramControl);
+        GitControl.gitRemoteAddRepo(paramControl);
+        GitControl.addToken(paramControl);
         GitControl.pushToken(paramControl);
     }
 }

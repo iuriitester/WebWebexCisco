@@ -26,8 +26,19 @@ public class GitControl extends Git{
         return true;
     }*/
 
+
+
     public static Path getDirectory(ParamControl paramControl, DirectoryType directoryType){
         return getDirectories(paramControl, directoryType);
+    }
+
+
+    public static void getInitToken(ParamControl paramControl){
+        try{
+            gitInit(paramControl);
+        }catch (Exception e) {
+            System.out.println("initToken");
+        }
     }
 
     public static void addToken(ParamControl paramControl)  {
@@ -37,6 +48,13 @@ public class GitControl extends Git{
             System.out.println("addToken");
         }
 
+    }
+    public static void gitRemoteAddRepo(ParamControl paramControl){
+        try{
+            gitRemoteAdd(paramControl);
+        }catch (Exception e) {
+            System.out.println("addToken");
+        }
     }
 
     public static void pushToken(ParamControl paramControl) {

@@ -84,8 +84,13 @@ public class Git {
     protected static void gitPull(ParamControl paramControl) throws IOException, InterruptedException {
         runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "pull");
     }
+    protected static void gitInit(ParamControl paramControl) throws IOException, InterruptedException {
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "init");
+    }
+    protected static void gitRemoteAdd(ParamControl paramControl) throws IOException, InterruptedException {
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "remote", "add", "Token", "https://github.com/cucamburs/Token.git");
 
-
+    }
 
 
 
