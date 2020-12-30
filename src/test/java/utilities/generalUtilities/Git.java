@@ -71,7 +71,8 @@ public class Git {
 
 
     protected static void gitPush(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
+      //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push");
     }
 
     protected static void gitAdd(ParamControl paramControl) throws IOException, InterruptedException {
