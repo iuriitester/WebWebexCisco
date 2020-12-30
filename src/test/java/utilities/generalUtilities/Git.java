@@ -69,14 +69,21 @@ public class Git {
 
 
 
-
+    protected static void gitSet(ParamControl paramControl) throws IOException, InterruptedException {
+        //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git","remote", "set-url", "origin", "https://github.com/cucamburs/Token.git");
+    }
+    protected static void gitPushForce(ParamControl paramControl) throws IOException, InterruptedException {
+        //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "--force", "origin", "master");
+    }
     protected static void gitPush(ParamControl paramControl) throws IOException, InterruptedException {
       //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push");
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "--set-upstream", "origin", "master");
     }
 
     protected static void gitAdd(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "add", "-A");
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "add", "token.txt");
     }
     protected static void gitCommit(ParamControl paramControl, String message) throws IOException, InterruptedException {
         runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "commit", "-m", message);
@@ -88,9 +95,10 @@ public class Git {
         runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "init");
     }
     protected static void gitRemoteAdd(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "remote", "add", "Token", "https://github.com/cucamburs/Token.git");
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "remote", "add", "origin", "https://github.com/cucamburs/CiscoWebexTestAPI.git" /*"https://github.com/cucamburs/Token.git"*/);
 
     }
+
 
 
 

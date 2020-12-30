@@ -15,23 +15,6 @@ import java.util.Scanner;
 
 public class GitControl extends Git{
 
-/*    public boolean gitInit(ParamControl paramControl){
-        try{
-            GitControl.initAndAddFile(paramControl);
-
-            Git.gitPush(Git.getDirectory());
-        }catch(IOException | InterruptedException | NullParamException io){
-            System.out.println("IOException is here");
-        }
-        return true;
-    }*/
-
-
-
-    public static Path getDirectory(ParamControl paramControl, DirectoryType directoryType){
-        return getDirectories(paramControl, directoryType);
-    }
-
 
     public static void getInitToken(ParamControl paramControl){
         try{
@@ -49,11 +32,26 @@ public class GitControl extends Git{
         }
 
     }
+    public static void commitToken(ParamControl paramControl, String text)  {
+        try{
+            gitCommit(paramControl, text);
+        }catch (Exception e) {
+            System.out.println("commitToken");
+        }
+
+    }
     public static void gitRemoteAddRepo(ParamControl paramControl){
         try{
             gitRemoteAdd(paramControl);
         }catch (Exception e) {
             System.out.println("addToken");
+        }
+    }
+    public static void gitSetRepo(ParamControl paramControl){
+        try{
+            gitSet(paramControl);
+        }catch (Exception e) {
+            System.out.println("SetRepo");
         }
     }
 
@@ -64,6 +62,18 @@ public class GitControl extends Git{
             System.out.println("pushToken");
         }
 
+    }
+    public static void pushForceToken(ParamControl paramControl) {
+        try{
+            gitPushForce(paramControl);
+        }catch (Exception e) {
+            System.out.println("pushToken");
+        }
+
+    }
+
+    public static Path getDirectory(ParamControl paramControl, DirectoryType directoryType){
+        return getDirectories(paramControl, directoryType);
     }
 
     public String readToken(ParamControl paramControl) throws NotInitializationTokenException {

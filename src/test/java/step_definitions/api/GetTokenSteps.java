@@ -12,14 +12,15 @@ import utilities.dictionary.EndPoints;
 import utilities.exeptions.NullAppException;
 import utilities.exeptions.NullParamException;
 import utilities.exeptions.NullUserNameException;
-import utilities.generalUtilities.Git;
+import utilities.generalUtilities.DeleteDirectory;
 import utilities.generalUtilities.GitControl;
 import utilities.ui.BrowserUtils;
 import utilities.ui.Driver;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
+
 
 import static io.restassured.RestAssured.given;
 
@@ -58,22 +59,45 @@ public class GetTokenSteps extends DevelopBaseSteps {
         developWebexPages.gettingStartedPage.okButton.click();
      //   APIAuthorization.setToken(BrowserUtils.copyFromBuffer());
         //Assertions.assertFalse(APIAuthorization.getToken().isEmpty());
-        System.out.println("I take Token finish");
     }
 
     @And("I save it to the file")
     public void i_save_it_to_the_file() throws IOException {
-        if (Files.deleteIfExists(GitControl.getDirectory(paramControl, DirectoryType.directory))) System.out.println("Deleting is true");
-        else System.out.println("Deleting is false");
+
+        File directory = new File(String.valueOf(GitControl.getDirectory(paramControl, DirectoryType.directory)));
+
+        if (directory.exists())
+            try{
+
+                DeleteDirectory.delete(directory);
+
+            }catch(IOException e){
+                e.printStackTrace();
+                System.exit(0);
+            }
+
         Files.createDirectories(GitControl.getDirectory(paramControl, DirectoryType.directory));
         Files.write(GitControl.getDirectory(paramControl, DirectoryType.directory).resolve("token.txt"), BrowserUtils.copyFromBuffer().getBytes());
     }
 
     @And("Push to the remote repository")
     public void push_to_the_remote_repository(){
+
         GitControl.getInitToken(paramControl);
+
         GitControl.gitRemoteAddRepo(paramControl);
+
+        GitControl.gitSetRepo(paramControl);
+
         GitControl.addToken(paramControl);
-        GitControl.pushToken(paramControl);
+
+        GitControl.commitToken(paramControl, "next commit of token key");
+
+        GitControl.pushForceToken(paramControl);
+
+
     }
 }
+
+
+
