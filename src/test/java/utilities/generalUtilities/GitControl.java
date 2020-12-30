@@ -103,9 +103,6 @@ public class GitControl extends Git{
         Path fileName = getDirectories(paramControl, DirectoryType.directory);
         File file = new File("" +fileName + "/token.txt");
 
-           // FileInputStream fileInputStream = new FileInputStream(file);
-          //String token =  fileInputStream.;
-
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()){
 
