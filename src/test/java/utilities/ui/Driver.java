@@ -48,11 +48,13 @@ public class Driver {
                     System.out.println("dr.chrome-headless");
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions();
+
                     chromeOptions.setHeadless(true);
                     chromeOptions.addArguments("--disable-extensions");
                     chromeOptions.addArguments("--disable-gpu");
                     chromeOptions.addArguments("--no-sandbox");
-                    chromeOptions.setBinary("/opt/google/chrome/google-chrome");
+                    chromeOptions.setBinary("/opt/google/chrome");
+
                     driverPool.set(new ChromeDriver(chromeOptions));
                     break;
                 case "firefox":
