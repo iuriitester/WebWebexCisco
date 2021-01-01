@@ -48,7 +48,7 @@ public class Driver {
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.setHeadless(true);
                     chromeOptions.setBinary("/opt/google/chrome/google-chrome");
-                    driverPool.set(new ChromeDriver(new ChromeOptions().setHeadless(true)));
+                    driverPool.set(new ChromeDriver(chromeOptions));
                     break;
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
