@@ -40,10 +40,12 @@ public class Driver {
 
             switch (browser) {
                 case "chrome":
+                    System.out.println("dr.chrome");
                     WebDriverManager.chromedriver().setup();
                     driverPool.set(new ChromeDriver());
                     break;
                 case "chrome-headless":
+                    System.out.println("dr.chrome-headless");
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.setHeadless(true);
