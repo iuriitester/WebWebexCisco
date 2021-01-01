@@ -16,6 +16,7 @@ import org.openqa.selenium.safari.SafariOptions;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import step_definitions.initalStep.ParamControl;
 import utilities.dictionary.PropertyFiles;
 import utilities.generalUtilities.Environment;
 
@@ -44,6 +45,9 @@ public class Driver {
                     break;
                 case "chrome-headless":
                     WebDriverManager.chromedriver().setup();
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.setHeadless(true);
+                    chromeOptions.setBinary("/opt/google/chrome/google-chrome");
                     driverPool.set(new ChromeDriver(new ChromeOptions().setHeadless(true)));
                     break;
                 case "firefox":
@@ -78,8 +82,8 @@ public class Driver {
                 case "remote-chrome":
                     try {
                         URL url = new URL("http://3.86.148.247:4444/wd/hub");
-                        ChromeOptions chromeOptions = new ChromeOptions();
-                        driverPool.set(new RemoteWebDriver(url, chromeOptions));
+                        ChromeOptions remoteChromeOptions = new ChromeOptions();
+                        driverPool.set(new RemoteWebDriver(url, remoteChromeOptions));
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
