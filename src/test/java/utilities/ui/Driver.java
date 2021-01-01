@@ -52,7 +52,7 @@ public class Driver {
                     chromeOptions.addArguments("--disable-extensions");
                     chromeOptions.addArguments("--disable-gpu");
                     chromeOptions.addArguments("--no-sandbox");
-                    chromeOptions.setBinary("/opt/google/chrome/google-chrome");
+               //     chromeOptions.setBinary("/opt/google/chrome/google-chrome");
                     driverPool.set(new ChromeDriver(chromeOptions));
                     break;
                 case "firefox":
