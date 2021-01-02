@@ -74,7 +74,7 @@ public class Git {
 
     protected static void gitConfigName(ParamControl paramControl) throws IOException, InterruptedException {
         //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git","config", "--global", "user.name", "jenkins");
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git","config", "--global", "user.name", "cucamburs");
     }
 
     protected static void gitSet(ParamControl paramControl) throws IOException, InterruptedException {
