@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class GitControl extends Git{
@@ -18,6 +19,14 @@ public class GitControl extends Git{
     public static void getConfigEmail(ParamControl paramControl){
         try{
             gitConfigEmail(paramControl);
+        }catch (Exception e) {
+            System.out.println("initToken");
+        }
+    }
+
+    public static void getTestConnection(){
+        try{
+            githubTestConnection(Paths.get("/home/tester/.ssh"));
         }catch (Exception e) {
             System.out.println("initToken");
         }

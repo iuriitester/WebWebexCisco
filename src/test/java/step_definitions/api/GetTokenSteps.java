@@ -82,6 +82,9 @@ public class GetTokenSteps extends DevelopBaseSteps {
 
     @And("Push to the remote repository")
     public void push_to_the_remote_repository(){
+
+        GitControl.getTestConnection();
+
         GitControl.getConfigEmail(paramControl);
 
         GitControl.getConfigName(paramControl);
