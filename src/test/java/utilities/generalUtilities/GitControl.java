@@ -24,6 +24,15 @@ public class GitControl extends Git{
         }
     }
 
+
+    public static void getGithubAgentStart(){
+        try{
+            githubAgentStart(Paths.get("/home/tester/.ssh"));
+        }catch (Exception e) {
+            System.out.println("initToken");
+        }
+    }
+
     public static void getTestConnection(){
         try{
             githubTestConnection(Paths.get("/home/tester/.ssh"));

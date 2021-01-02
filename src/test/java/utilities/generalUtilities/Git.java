@@ -67,6 +67,12 @@ public class Git {
         runCommand(directory, "git", "remote", "add", "Token", "URL");
     }*/
 
+    protected static void githubAgentStart(Path path) throws IOException, InterruptedException {
+        //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
+        runCommand(path, "eval", "'ssh-agent -s'");
+        runCommand(path, "ssh-add", "/home/tester/.ssh/github-rsa");
+    }
+
     protected static void githubTestConnection(Path path) throws IOException, InterruptedException {
         //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
         runCommand(path, "ssh","-T", "git@github.com");
