@@ -16,9 +16,9 @@ import java.util.Scanner;
 
 public class GitControl extends Git{
 
-    public static void getConfigEmail(ParamControl paramControl){
+    public static void getConfigEmail(){
         try{
-            gitConfigEmail(paramControl);
+            gitConfigEmail(Paths.get("/home/tester/.ssh"));
         }catch (Exception e) {
             System.out.println("initToken");
         }
@@ -32,9 +32,9 @@ public class GitControl extends Git{
         }
     }
 
-    public static void getConfigName(ParamControl paramControl){
+    public static void getConfigName(){
         try{
-            gitConfigName(paramControl);
+            gitConfigName(Paths.get("/home/tester/.ssh"));
         }catch (Exception e) {
             System.out.println("initToken");
         }

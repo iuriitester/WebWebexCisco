@@ -69,18 +69,18 @@ public class Git {
 
     protected static void githubTestConnection(Path path) throws IOException, InterruptedException {
         //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
-        runCommand(path, "git","-T", "git@github.com");
+        runCommand(path, "ssh","-T", "git@github.com");
     }
 
 
-    protected static void gitConfigEmail(ParamControl paramControl) throws IOException, InterruptedException {
+    protected static void gitConfigEmail(Path path) throws IOException, InterruptedException {
         //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git","config", "--global", "user.email", "tester@tester.com");
+        runCommand(path, "git","config", "--global", "user.email", "tester@tester.com");
     }
 
-    protected static void gitConfigName(ParamControl paramControl) throws IOException, InterruptedException {
+    protected static void gitConfigName(Path path) throws IOException, InterruptedException {
         //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git","config", "--global", "user.name", "cucamburs");
+        runCommand(path, "git","config", "--global", "user.name", "cucamburs");
     }
 
     protected static void gitSet(ParamControl paramControl) throws IOException, InterruptedException {
