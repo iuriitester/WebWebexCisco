@@ -70,6 +70,7 @@ public class Git {
     protected static void githubAgentStart(Path path) throws IOException, InterruptedException {
         //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
         runCommand(path, "eval", "'ssh-agent -s'");
+        System.out.println("Agent is starting");
         runCommand(path, "ssh-add", "/home/tester/.ssh/github-rsa");
     }
 

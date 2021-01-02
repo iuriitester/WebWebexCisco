@@ -20,7 +20,7 @@ public class GitControl extends Git{
         try{
             gitConfigEmail(Paths.get("/home/tester/.ssh"));
         }catch (Exception e) {
-            System.out.println("initToken");
+            System.out.println("Exception Config Email");
         }
     }
 
@@ -29,7 +29,7 @@ public class GitControl extends Git{
         try{
             githubAgentStart(Paths.get("/home/tester/.ssh"));
         }catch (Exception e) {
-            System.out.println("initToken");
+            System.out.println("Exception Agent is starting");
         }
     }
 
@@ -37,7 +37,7 @@ public class GitControl extends Git{
         try{
             githubTestConnection(Paths.get("/home/tester/.ssh"));
         }catch (Exception e) {
-            System.out.println("initToken");
+            System.out.println("Exception Test Connection");
         }
     }
 
@@ -45,7 +45,7 @@ public class GitControl extends Git{
         try{
             gitConfigName(Paths.get("/home/tester/.ssh"));
         }catch (Exception e) {
-            System.out.println("initToken");
+            System.out.println("Exception config Name");
         }
     }
 
