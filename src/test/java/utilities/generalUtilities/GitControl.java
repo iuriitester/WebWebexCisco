@@ -15,6 +15,21 @@ import java.util.Scanner;
 
 public class GitControl extends Git{
 
+    public static void getConfigEmail(ParamControl paramControl){
+        try{
+            gitConfigEmail(paramControl);
+        }catch (Exception e) {
+            System.out.println("initToken");
+        }
+    }
+
+    public static void getConfigName(ParamControl paramControl){
+        try{
+            gitConfigName(paramControl);
+        }catch (Exception e) {
+            System.out.println("initToken");
+        }
+    }
 
     public static void getInitToken(ParamControl paramControl){
         try{

@@ -67,7 +67,15 @@ public class Git {
         runCommand(directory, "git", "remote", "add", "Token", "URL");
     }*/
 
+    protected static void gitConfigEmail(ParamControl paramControl) throws IOException, InterruptedException {
+        //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git","config", "--global", "user.email", "jenkins@example.com");
+    }
 
+    protected static void gitConfigName(ParamControl paramControl) throws IOException, InterruptedException {
+        //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git","config", "--global", "user.name", "jenkins");
+    }
 
     protected static void gitSet(ParamControl paramControl) throws IOException, InterruptedException {
         //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
