@@ -79,7 +79,7 @@ public class Git {
 
     protected static void gitSet(ParamControl paramControl) throws IOException, InterruptedException {
         //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git","remote", "set-url", "origin", "https://github.com/cucamburs/Token.git");
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git","remote", "set-url", "origin", "git@github.com:cucamburs/Token.git");
     }
     protected static void gitPushForce(ParamControl paramControl) throws IOException, InterruptedException {
         //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
