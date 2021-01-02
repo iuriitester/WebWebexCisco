@@ -69,7 +69,7 @@ public class Git {
 
     protected static void gitConfigEmail(ParamControl paramControl) throws IOException, InterruptedException {
         //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git","config", "--global", "user.email", "jenkins@example.com");
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git","config", "--global", "user.email", "tester@tester.com");
     }
 
     protected static void gitConfigName(ParamControl paramControl) throws IOException, InterruptedException {
