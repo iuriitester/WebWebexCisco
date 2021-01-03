@@ -22,13 +22,13 @@ public class GitControl extends Git{
     }
 
 
-    public static void getGithubAgentStart(ParamControl paramControl){
+/*    public static void getGithubAgentStart(ParamControl paramControl){
         try{
             githubAgentStart(paramControl);
         }catch (IOException | InterruptedException e) {
            e.printStackTrace();
         }
-    }
+    }*/
 
     public static void getTestConnection(ParamControl paramControl){
         try{

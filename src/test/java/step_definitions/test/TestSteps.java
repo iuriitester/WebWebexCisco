@@ -19,7 +19,7 @@ public class TestSteps extends DevelopBaseSteps {
     @Given("I am connecting to the repository")
     public void iAmConnectingToTheRepository(){
 
-        GitControl.getGithubAgentStart(paramControl);
+
 
         GitControl.getConfigEmail(paramControl);
 

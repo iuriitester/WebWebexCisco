@@ -13,6 +13,7 @@ import utilities.exeptions.NullAppException;
 import utilities.exeptions.NullParamException;
 import utilities.exeptions.NullUserNameException;
 import utilities.generalUtilities.DeleteDirectory;
+import utilities.generalUtilities.Git;
 import utilities.generalUtilities.GitControl;
 import utilities.ui.BrowserUtils;
 import utilities.ui.Driver;
@@ -81,21 +82,20 @@ public class GetTokenSteps extends DevelopBaseSteps {
     }
 
     @And("Push to the remote repository")
-    public void push_to_the_remote_repository(){
-
-        GitControl.getGithubAgentStart(paramControl);
-
-        GitControl.getConfigEmail(paramControl);
-
-        GitControl.getConfigName(paramControl);
-
-        GitControl.getTestConnection(paramControl);
-
-
+    public void push_to_the_remote_repository()  {
+        try{
+            Git.githubKillAgent(paramControl);
+            Git.githubAgentAdd(paramControl);
+            Git.githubSSHKeyAdd(paramControl);
+            Git.githubTestConnection(paramControl);
+        }catch (IOException | InterruptedException e){
+            e.printStackTrace();
+        }
 
 
 
-        GitControl.getInitToken(paramControl);
+
+/*        GitControl.getInitToken(paramControl);
 
         GitControl.gitRemoteAddRepo(paramControl);
 
@@ -105,7 +105,7 @@ public class GetTokenSteps extends DevelopBaseSteps {
 
         GitControl.commitToken(paramControl, "next commit of token key");
 
-        GitControl.pushForceToken(paramControl);
+        GitControl.pushForceToken(paramControl);*/
 
 
     }
