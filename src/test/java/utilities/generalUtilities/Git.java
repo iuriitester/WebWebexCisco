@@ -72,7 +72,7 @@ public class Git {
     }
 
     public static void githubAgentAdd(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory),  "eval", "'ssh-agent -s'");
+        runCommand(getDirectories(paramControl, DirectoryType.directory),  "eval", "$(ssh-agent -s)");
     }
 
     public static void githubSSHKeyAdd(ParamControl paramControl) throws IOException, InterruptedException {
