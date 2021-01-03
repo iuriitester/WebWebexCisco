@@ -67,27 +67,27 @@ public class Git {
         runCommand(directory, "git", "remote", "add", "Token", "URL");
     }*/
 
-    protected static void githubAgentStart(Path path) throws IOException, InterruptedException {
+    protected static void githubAgentStart(ParamControl paramControl) throws IOException, InterruptedException {
         //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
-        runCommand(path, "eval", "'ssh-agent -s'");
-        System.out.println("Agent is starting");
-        runCommand(path, "ssh-add", "/home/tester/.ssh/github-rsa");
+        runCommand(getDirectories(paramControl, DirectoryType.directory),  "eval", "'ssh-agent -s'");
+
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "ssh-add", "/home/tester/.ssh/github-rsa");
     }
 
-    protected static void githubTestConnection(Path path) throws IOException, InterruptedException {
+    protected static void githubTestConnection(ParamControl paramControl) throws IOException, InterruptedException {
         //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
-        runCommand(path, "ssh","-T", "git@github.com");
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "ssh","-T", "git@github.com");
     }
 
 
-    protected static void gitConfigEmail(Path path) throws IOException, InterruptedException {
+    protected static void gitConfigEmail(ParamControl paramControl) throws IOException, InterruptedException {
         //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
-        runCommand(path, "git","config", "--global", "user.email", "tester@tester.com");
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git","config", "--global", "user.email", "tester@tester.com");
     }
 
-    protected static void gitConfigName(Path path) throws IOException, InterruptedException {
+    protected static void gitConfigName(ParamControl paramControl) throws IOException, InterruptedException {
         //  runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "-u", "origin", "main");
-        runCommand(path, "git","config", "--global", "user.name", "cucamburs");
+        runCommand(getDirectories(paramControl, DirectoryType.directory), "git","config", "--global", "user.name", "cucamburs");
     }
 
     protected static void gitSet(ParamControl paramControl) throws IOException, InterruptedException {

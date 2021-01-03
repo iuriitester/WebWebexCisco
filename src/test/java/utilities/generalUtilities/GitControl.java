@@ -3,11 +3,8 @@ package utilities.generalUtilities;
 import step_definitions.initalStep.ParamControl;
 import utilities.dictionary.DirectoryType;
 import utilities.exeptions.NotInitializationTokenException;
-import utilities.exeptions.NullParamException;
 
-import javax.imageio.stream.FileImageInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -16,34 +13,34 @@ import java.util.Scanner;
 
 public class GitControl extends Git{
 
-    public static void getConfigEmail(){
+    public static void getConfigEmail(ParamControl paramControl){
         try{
-            gitConfigEmail(Paths.get("/home/tester/.ssh"));
+            gitConfigEmail(paramControl);
         }catch (Exception e) {
             System.out.println("Exception Config Email");
         }
     }
 
 
-    public static void getGithubAgentStart(){
+    public static void getGithubAgentStart(ParamControl paramControl){
         try{
-            githubAgentStart(Paths.get("/home/tester/.ssh"));
-        }catch (Exception e) {
-            System.out.println("Exception Agent is starting");
+            githubAgentStart(paramControl);
+        }catch (IOException | InterruptedException e) {
+           e.printStackTrace();
         }
     }
 
-    public static void getTestConnection(){
+    public static void getTestConnection(ParamControl paramControl){
         try{
-            githubTestConnection(Paths.get("/home/tester/.ssh"));
+            githubTestConnection(paramControl);
         }catch (Exception e) {
             System.out.println("Exception Test Connection");
         }
     }
 
-    public static void getConfigName(){
+    public static void getConfigName(ParamControl paramControl){
         try{
-            gitConfigName(Paths.get("/home/tester/.ssh"));
+            gitConfigName(paramControl);
         }catch (Exception e) {
             System.out.println("Exception config Name");
         }
