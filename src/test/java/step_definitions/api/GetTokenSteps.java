@@ -84,7 +84,7 @@ public class GetTokenSteps extends DevelopBaseSteps {
     @And("Push to the remote repository")
     public void push_to_the_remote_repository()  {
         try{
-            Git.githubKillAgent(paramControl);
+            // Git.githubKillAgent(paramControl);
             Git.githubAgentAdd(paramControl);
             Git.githubSSHKeyAdd(paramControl);
             Git.githubTestConnection(paramControl);
