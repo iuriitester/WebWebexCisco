@@ -69,15 +69,17 @@ public class GetTokenSteps extends DevelopBaseSteps {
 
         if (directory.exists())
             try{
-
+                System.out.println("Start of deleting");
                 DeleteDirectory.delete(directory);
 
             }catch(IOException e){
+                System.out.println("Exception of deleting");
                 e.printStackTrace();
                 System.exit(0);
             }
-
+        System.out.println("Creating the directory");
         Files.createDirectories(GitControl.getDirectory(paramControl, DirectoryType.directory));
+        System.out.println("the directory is created");
       //  Files.write(GitControl.getDirectory(paramControl, DirectoryType.directory).resolve("token.txt"), BrowserUtils.copyFromBuffer().getBytes());
     }
 
