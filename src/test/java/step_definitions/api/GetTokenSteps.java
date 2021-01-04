@@ -78,7 +78,7 @@ public class GetTokenSteps extends DevelopBaseSteps {
             }
 
         Files.createDirectories(GitControl.getDirectory(paramControl, DirectoryType.directory));
-        Files.write(GitControl.getDirectory(paramControl, DirectoryType.directory).resolve("token.txt"), BrowserUtils.copyFromBuffer().getBytes());
+      //  Files.write(GitControl.getDirectory(paramControl, DirectoryType.directory).resolve("token.txt"), BrowserUtils.copyFromBuffer().getBytes());
     }
 
     @And("Push to the remote repository")
