@@ -69,27 +69,31 @@ public class GetTokenSteps extends DevelopBaseSteps {
 
         if (directory.exists())
             try{
-                System.out.println("Start of deleting");
                 DeleteDirectory.delete(directory);
 
             }catch(IOException e){
-                System.out.println("Exception of deleting");
                 e.printStackTrace();
                 System.exit(0);
             }
-        System.out.println("Creating the directory");
+
         Files.createDirectories(GitControl.getDirectory(paramControl, DirectoryType.directory));
-        System.out.println("the directory is created");
-      //  Files.write(GitControl.getDirectory(paramControl, DirectoryType.directory).resolve("token.txt"), BrowserUtils.copyFromBuffer().getBytes());
+
+        Files.write(GitControl.getDirectory(paramControl, DirectoryType.directory).resolve("token.txt"), BrowserUtils.copyFromBuffer().getBytes());
     }
 
     @And("Push to the remote repository")
     public void push_to_the_remote_repository()  {
+        System.out.println("Start push");
         try{
-            // Git.githubKillAgent(paramControl);
+            System.out.println("kill agent start");
+            Git.githubKillAgent(paramControl);
+            System.out.println("Start agent");
             Git.githubAgentAdd(paramControl);
+            System.out.println("Start Add the path to agent ");
             Git.githubSSHKeyAdd(paramControl);
+            System.out.println("Test connect by SSH key");
             Git.githubTestConnection(paramControl);
+            System.out.println("All completed");
         }catch (IOException | InterruptedException e){
             e.printStackTrace();
         }
