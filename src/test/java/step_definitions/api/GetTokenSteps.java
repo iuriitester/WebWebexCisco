@@ -85,10 +85,12 @@ public class GetTokenSteps extends DevelopBaseSteps {
     public void push_to_the_remote_repository()  {
         System.out.println("Start push");
         try{
-            System.out.println("kill agent start");
-            Git.githubKillAgent(paramControl);
+     //       System.out.println("kill agent start");
+     //       Git.githubKillAgent(paramControl);
             System.out.println("Start agent");
             Git.githubAgentAdd(paramControl);
+            System.out.println("kill agent start");
+            Git.githubKillAgent(paramControl);
             System.out.println("Start Add the path to agent ");
             Git.githubSSHKeyAdd(paramControl);
             System.out.println("Test connect by SSH key");
