@@ -72,11 +72,12 @@ public class Git {
     }*/
 
     public static void githubKillAgent(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.cmd),  "killall", "ssh-agent", "-d");
+        runCommand(getDirectories(paramControl, DirectoryType.cmd),  "killall", "ssh-agent");
     }
 
     public static void githubAgentAdd(ParamControl paramControl) throws IOException, InterruptedException {
         runCommand(getDirectories(paramControl, DirectoryType.cmd),  "ssh-agent", "bash");
+        Thread.sleep(3000);
     }
 
     public static void githubSSHKeyAdd(ParamControl paramControl) throws IOException, InterruptedException {
