@@ -12,10 +12,12 @@ import java.util.Objects;
 
 public class Git {
     private static String strDirectory;
-    private static Path directory, repositoryPath;
+    private static Path directory, repositoryPath, cmd;
 
     private static void setDirectory(ParamControl paramControl) {
         try{
+            strDirectory = (String)paramControl.getParam("cmd");
+            cmd = Paths.get(strDirectory);
             strDirectory = (String)paramControl.getParam("path");
             directory = Paths.get(strDirectory);
         }catch (NullParamException nprE){
@@ -35,6 +37,8 @@ public class Git {
 
             return repositoryPath = Paths.get(strDirectory + "/.git");
         } else if (directoryType == DirectoryType.repositoryPath && repositoryPath != null) return repositoryPath;
+
+        if (directoryType == DirectoryType.cmd) return cmd;
         return null;
     }
 
@@ -68,54 +72,54 @@ public class Git {
     }*/
 
     public static void githubKillAgent(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory),  "killall", "ssh-agent");
+        runCommand(getDirectories(paramControl, DirectoryType.cmd),  "killall", "ssh-agent");
     }
 
     public static void githubAgentAdd(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory),  "ssh-agent", "bash");
+        runCommand(getDirectories(paramControl, DirectoryType.cmd),  "ssh-agent", "bash");
     }
 
     public static void githubSSHKeyAdd(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "ssh-add", "/home/tester/.ssh/github-rsa");
+        runCommand(getDirectories(paramControl, DirectoryType.cmd), "ssh-add", "/home/tester/.ssh/github-rsa");
     }
 
     public static void githubTestConnection(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "ssh","-T", "git@github.com");
+        runCommand(getDirectories(paramControl, DirectoryType.cmd), "ssh","-T", "git@github.com");
     }
 
 
     public static void gitConfigEmail(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git","config", "--global", "user.email", "tester@tester.com");
+        runCommand(getDirectories(paramControl, DirectoryType.cmd), "git","config", "--global", "user.email", "tester@tester.com");
     }
 
     public static void gitConfigName(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git","config", "--global", "user.name", "cucamburs");
+        runCommand(getDirectories(paramControl, DirectoryType.cmd), "git","config", "--global", "user.name", "cucamburs");
     }
 
     public static void gitSet(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git","remote", "set-url", "origin", "git@github.com:cucamburs/Token.git");
+        runCommand(getDirectories(paramControl, DirectoryType.cmd), "git","remote", "set-url", "origin", "git@github.com:cucamburs/Token.git");
     }
     public static void gitPushForce(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "--force", "origin", "master");
+        runCommand(getDirectories(paramControl, DirectoryType.cmd), "git", "push", "--force", "origin", "master");
     }
     public static void gitPush(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "push", "--set-upstream", "origin", "master");
+        runCommand(getDirectories(paramControl, DirectoryType.cmd), "git", "push", "--set-upstream", "origin", "master");
     }
 
     public static void gitAdd(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "add", "token.txt");
+        runCommand(getDirectories(paramControl, DirectoryType.cmd), "git", "add", "token.txt");
     }
     public static void gitCommit(ParamControl paramControl, String message) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "commit", "-m", message);
+        runCommand(getDirectories(paramControl, DirectoryType.cmd), "git", "commit", "-m", message);
     }
     public static void gitPull(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "pull");
+        runCommand(getDirectories(paramControl, DirectoryType.cmd), "git", "pull");
     }
     public static void gitInit(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "init");
+        runCommand(getDirectories(paramControl, DirectoryType.cmd), "git", "init");
     }
     protected static void gitRemoteAdd(ParamControl paramControl) throws IOException, InterruptedException {
-        runCommand(getDirectories(paramControl, DirectoryType.directory), "git", "remote", "add", "origin", "https://github.com/cucamburs/CiscoWebexTestAPI.git" /*"https://github.com/cucamburs/Token.git"*/);
+        runCommand(getDirectories(paramControl, DirectoryType.cmd), "git", "remote", "add", "origin", "https://github.com/cucamburs/CiscoWebexTestAPI.git" /*"https://github.com/cucamburs/Token.git"*/);
 
     }
 
