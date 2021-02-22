@@ -8,10 +8,7 @@ API folder Structure
             get(Param param1, ... Param paramN) - if it is READ request
             put(Param param1, ... Param paramN) - if it is UPDATE request
             delete(Param param1, ... Param paramN) - if it is DELETE request
-        * subEndPoint - subfolder for EndPoint
-            Pattern of the name method
-            post(Param param1, ... Param paramN) - if it is CREATE request
-            get(Param param1, ... Param paramN) - if it is READ request
-            put(Param param1, ... Param paramN) - if it is UPDATE request
-            delete(Param param1, ... Param paramN) - if it is DELETE request
-        * POJO-classes for a respond of the EndPoint
+        * xpojo - package of POJO classes of API respond
+            POJO-classes for a respond of the EndPoint
+                parameters are the API respond fields
+
