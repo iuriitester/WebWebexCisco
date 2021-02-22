@@ -54,11 +54,13 @@ public class GetTokenSteps extends DevelopBaseSteps {
         Assertions.assertTrue(developWebexPages.gettingStartedPage.bodyTokenButton.isDisplayed());
     }
     @And("I take Token")
-    public void itakeToken()  {
+    public void itakeToken() throws InterruptedException {
         developWebexPages.gettingStartedPage.bodyTokenButton.click();
         BrowserUtils.waitForVisibility(developWebexPages.gettingStartedPage.bodyTokenButton,3);
         developWebexPages.gettingStartedPage.okButton.click();
-     //   APIAuthorization.setToken(BrowserUtils.copyFromBuffer());
+        Thread.sleep(3000);
+        APIAuthorization.setToken(BrowserUtils.copyFromBuffer());
+
         //Assertions.assertFalse(APIAuthorization.getToken().isEmpty());
     }
 
