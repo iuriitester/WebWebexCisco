@@ -6,8 +6,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="CiscoWebexTestAPI (2)" />
+        <module name="CiscoWebexTestAPI (1)" />
         <module name="CiscoWebexTestAPI" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="CiscoWebexTestAPI" target="8" />
+      <module name="CiscoWebexTestAPI (1)" target="8" />
+      <module name="CiscoWebexTestAPI (2)" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

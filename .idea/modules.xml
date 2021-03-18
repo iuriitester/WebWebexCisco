@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/CiscoWebexTestAPI_Com.iml" filepath="$PROJECT_DIR$/.idea/CiscoWebexTestAPI_Com.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CiscoWebexTestAPI.iml" filepath="$PROJECT_DIR$/CiscoWebexTestAPI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CiscoWebexTestAPI (1).iml" filepath="$PROJECT_DIR$/CiscoWebexTestAPI (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/CiscoWebexTestAPI (2).iml" filepath="$PROJECT_DIR$/CiscoWebexTestAPI (2).iml" />
     </modules>
   </component>
 </project>
